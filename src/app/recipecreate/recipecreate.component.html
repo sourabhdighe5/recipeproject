@@ -1,0 +1,61 @@
+<h3>Add Recipe</h3>
+<div class="p-3 mt-3">
+  <form [formGroup]="recipeForm">
+    <div>
+      <label for="">Name</label>
+      <input type="text" formControlName="name" class="form-control">
+    </div>
+    <div>
+      <label for="">Description</label>
+      <textarea formControlName="description" class="form-control"></textarea>
+    </div>
+    <div>
+      <label for="">Source</label>
+      <input type="text" formControlName="source" class="form-control">
+    </div>
+    <div class="d-flex mt-5 mb-5">
+      <label> Categories</label>
+      <label for="r1 mx-5">
+        <input formControlName="categories" name="categories" value="Breakfast" type="radio" id="r1" class="mx-3">
+        Breakfast
+      </label>
+      <label for="r2 mx-5">
+        <input formControlName="categories" name="categories" value="Lunch" type="radio" id="r2" class="mx-3"> Lunch
+      </label>
+      <label for="r3 mx-5">
+        <input formControlName="categories" name="categories" value="Appitizer" type="radio" id="r3" class="mx-3">
+        Appitizer
+      </label>
+      <label for="r4 mx-5">
+        <input formControlName="categories" name="categories" value="Dinner" type="radio" id="r4" class="mx-3"> Dinner
+      </label>
+      <label for="r5 mx-5">
+        <input formControlName="categories" name="categories" value="Side" type="radio" id="r5" class="mx-3"> Side
+      </label>
+      <label for="r6 mx-5">
+        <input formControlName="categories" name="categories" value="Dessert" type="radio" id="r6" class="mx-3"> Dessert
+      </label>
+    </div>
+
+    <div>
+      <label> Ingreident</label>
+      <div class="row mt-4" *ngFor="let item of recipeForm.value.ingredient;let i = index">
+        <div class="col-5">
+          <input type="text" (keyup)="setIngredientValues('name', $event, i)" class="form-control">
+        </div>
+        <div class="col-5">
+          <input type="text" (keyup)="setIngredientValues('amount', $event, i)" class="form-control">
+        </div>
+        <div>
+          <span class="p-2 bg-danger">X</span>
+        </div>
+      </div>
+      <button class="text-white bg-success py-2 border border-success mt-3" type="button" (click)="addIngredient()">
+        Add Ingreident
+      </button>
+    </div>
+  </form>
+  <div class="comntainer">
+    <button class="bg-primary border border-primary mt-5 text-white p-4" (click)="submitForm()"> Save</button>
+  </div>
+</div>
